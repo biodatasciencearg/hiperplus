@@ -101,6 +101,18 @@ function addItem(el,with_name=true) {
   } else {
     li.id = randomString();
     li.textContent = "New Carrousel"
+    data.push({
+                "carrousel_id": li.id,
+                "coupons_ids": [],
+                "exclusion_ids": [],
+                "database": "",
+                "method": "adhoc",
+                "carrousel_rank": 1,
+                "updated_at": "",
+                "carrousel_name": "New Carrousel",
+                "method_parameters": "{'N':10}",
+                "description":""
+            });
   }
   // Agrego el boton que me permita o bien borrarlo o editarlo.
   li.innerHTML += `<li> <button id='delete' onclick='editItem()'>Edit</button>
@@ -109,6 +121,24 @@ function addItem(el,with_name=true) {
 };
 function clearItem() {
   event.currentTarget.parentElement.parentElement.remove();
+};
+function editItem() {
+  var carrousel_id = event.currentTarget.parentElement.parentElement.id;
+  console.log(carrousel_id);
+  var list = document.getElementsByClassName('item');
+  // encuentro el indice que me interesa
+  for (var i=0;i<list.length;i++){
+    if (carrousel_id==list[i].id){
+      var carrousel_rank = String(i)
+    }
+  }
+  data.forEach((el)=>{
+    if (el.carrousel_id==carrousel_id) {
+      console.log("encontre este");
+      console.log(el);
+      console.log("posicion "+carrousel_rank)
+    };
+  });
 };
 function loadData(){
   dragArea.textContent = '';
