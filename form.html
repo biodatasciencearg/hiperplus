@@ -33,12 +33,21 @@ div {
 }
 </style>
 <body>
-  <script 
-  function goToHome () { 
-    alert( 'Hello, world!' );
-  }
-  ></script>
-
+<script>
+function get_value_from_query() {
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  var myElement = document.getElementById("carrousel_id");
+  myElement.value = params['carrousel_id'];
+  var myElement = document.getElementById("coupons_ids");
+  myElement.value = params['coupons_ids'];
+  var myElement = document.getElementById("carrousel_rank");
+  myElement.value = params['carrousel_rank'];
+};
+window.addEventListener('load', event => {
+      get_value_from_query();
+    });
+</script>
 <h3>Carrousel properties</h3>
 
 <div>
@@ -46,8 +55,12 @@ div {
     <label for="country">🌎country</label>
     <input type="text" id="country" name="country" value="BR" readonly>
     
+    <label for="crank"> Carrousel Rank</label>
+    <input type="text" id="carrousel_rank" name="carrousel_rank" value=1 placeholder="AAA_id" readonly>
+
+
     <label for="cname">🆔Carrousel Ids</label>
-    <input type="text" id="carrousel_id" name="carrousel_id" value="AAABBC" placeholder="AAA_id" readonly>
+    <input type="text" id="carrousel_id" name="carrousel_id" value=carrousel_id placeholder="AAA_id" readonly>
 
     <label for="fname">Carrousel type</label>
     <select id="carrousel_type" name="carrousel_type">
@@ -70,7 +83,8 @@ div {
     ,style="height:520px;">
     <label for="description">Description</label>
     <input type="text" id="description" name="description" placeholder="carrousel top 10">
-
+    
+    
   
     <input type="submit" value="Submit" onclick="goToHome()">
   </form>

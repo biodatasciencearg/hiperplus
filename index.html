@@ -61,7 +61,7 @@
 				],
                 "exclusion_ids": [],
 				"database": "",
-				"method": "adhoc",
+				"carrousel_type": "adhoc",
 				"carrousel_rank": 1,
 				"updated_at": "2022-03-15 09:38:52",
 				"carrousel_name": "Bem-vindo 🤗❤",
@@ -73,7 +73,7 @@
                 "coupons_ids": [],
                 "exclusion_ids": [],
                 "database": "",
-                "method": "bday",
+                "carrousel_type": "bday",
                 "carrousel_rank": 2,
                 "updated_at": "2022-02-17 17:38:52",
                 "carrousel_name": "Se tem festa, tem Méqui 🎂🎈",
@@ -122,21 +122,22 @@ function addItem(el,with_name=true) {
 function clearItem() {
   event.currentTarget.parentElement.parentElement.remove();
 };
+
 function editItem() {
   var carrousel_id = event.currentTarget.parentElement.parentElement.id;
-  console.log(carrousel_id);
   var list = document.getElementsByClassName('item');
   // encuentro el indice que me interesa
   for (var i=0;i<list.length;i++){
     if (carrousel_id==list[i].id){
-      var carrousel_rank = String(i)
+      var carrousel_rank = parseInt(i) + 1
     }
   }
   data.forEach((el)=>{
     if (el.carrousel_id==carrousel_id) {
-      console.log("encontre este");
-      console.log(el);
-      console.log("posicion "+carrousel_rank)
+      var myJSON = el;
+      console.log(el['coupons_ids']);
+      var url = "form.html?carrousel_id=" + el.carrousel_id+ "&coupons_ids=" + el['coupons_ids'] + "&carrousel_rank=" + String(carrousel_rank)
+      window.location.href = url;
     };
   });
 };
