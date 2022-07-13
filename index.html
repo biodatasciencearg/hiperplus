@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- Created By Elias Lopez elias.lopez@ar.mcd.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiper+</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
+    
+</head>
+<body>
+  
+<div>
+  <label for="country">🌎 Country</label>
+
+  <select id="country" name="country">
+    <option value="AR">Argentina</option>
+    <option value="AW">Aruba</option>
+    <option value="BR">Brazil</option>
+    <option value="CL">Chile</option>
+    <option value="CO">Colombia</option>
+    <option value="CR">Costa Rica</option>
+    <option value="CW">Curazao</option>
+    <option value="EC">Ecuador</option>
+    <option value="GF">Guyana Francesa</option>
+    <option value="GP">Guadalupe</option>
+    <option value="MQ">Martinique</option>
+    <option value="MX">México</option>
+    <option value="PA">Panamá</option>
+    <option value="PE">Perú</option>
+    <option value="PR">Puerto Rico</option>
+    <option value="TT">Trinidad y Tobago</option>
+    <option value="VE">Venezuela</option>
+    <option value="UY">Uruguay</option>
+  </select>
+  <label for="enviroment">‍💻 Env</label>
+
+  <select id="enviroment" name="enviroment">
+    <option value="202332044435">prod</option>
+    <option value="849495627007">dev</option>
+  </select>
+  
+  <div id="dummy" class="wrapper">
+  <!-- Items sera cargados aqui -->
+  </div>
+  <div class="footer">
+    <button class="btn info" onclick="addItem('',with_name=false)">Add +</button>
+    <button class="btn success">Save</button>
+  </div>
+</div>
+  <script >
+    const dragArea = document.querySelector(".wrapper");
+    new Sortable(dragArea, {
+      animation: 350
+    });
+    var data = [{
+				"carrousel_id": "A",
+				"coupons_ids": ["62168442c36db602ac4245e0", "62168610d7e858029a349240", "62828df9c171d5735176e229"
+				],
+                "exclusion_ids": [],
+				"database": "",
+				"method": "adhoc",
+				"carrousel_rank": 1,
+				"updated_at": "2022-03-15 09:38:52",
+				"carrousel_name": "Bem-vindo 🤗❤",
+				"method_parameters": "{'N':10}",
+                "description":"Cupones de bienvenida para clientes nuevos"
+			},
+            {
+                "carrousel_id": "B",
+                "coupons_ids": [],
+                "exclusion_ids": [],
+                "database": "",
+                "method": "bday",
+                "carrousel_rank": 2,
+                "updated_at": "2022-02-17 17:38:52",
+                "carrousel_name": "Se tem festa, tem Méqui 🎂🎈",
+                "method_parameters": "{'N':10}",
+                "description":"Este carrusel solo será visible para los clientes que cumplan años en el mes."
+            },
+ ]
+window.addEventListener('DOMContentLoaded',()=>{
+  loadData();
+})
+function addItem(el,with_name=true) {
+  console.log(el);
+  const li = document.createElement('div');
+  const item =  li.classList.add('item');
+  //const item2 = item.classList.add('li')
+  //const nested = item.appendChild(document.createElement(`ul`));
+  //nested.class = "list-inline m-0";
+  //nested.classList.add(`nested`);
+  //nested.insertAdjacentHTML(`afterbegin`, 
+  //`<li class="list-inline-item">
+  //<button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Add"><i class="fa fa-table"></i></button>
+  //</li>
+  //<li class="list-inline-item">
+  //<button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+  //</li>
+  //<li class="list-inline-item">
+  //<button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+  //</li>
+  //</ul>`);
+  if (with_name) {
+    li.id = el.carrousel_id
+    li.textContent = el.carrousel_name;
+  } else {
+    li.textContent = "New Carrousel"
+}
+  
+  dragArea.append(li);
+};
+function loadData(){
+  dragArea.textContent = '';
+  addtoPage(data);
+};
+
+function addtoPage(arr){
+  arr.forEach((el)=>{
+  addItem(el,with_name=true);
+  });
+}
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<body>
+  <script 
+  function goToHome () { 
+    alert( 'Hello, world!' );
+  }
+  ></script>
+
+<h3>Carrousel properties</h3>
+
+<div>
+  <form action="/index.html">
+    <label for="country">🌎country</label>
+    <input type="text" id="country" name="country" value="BR" readonly>
+    
+    <label for="cname">🆔Carrousel Ids</label>
+    <input type="text" id="carrousel_id" name="carrousel_id" value="AAABBC" placeholder="AAA_id" readonly>
+
+    <label for="fname">Carrousel type</label>
+    <select id="carrousel_type" name="carrousel_type">
+      <option value="personalized">🌀 Personalized</option>
+      <option value="top">🏆 Top 10 </option>
+      <option value="birthday">🎂 Birthday</option>
+      <option value="experimental">🧪 Experimental</option>
+      <option value="rfm">📈 RFM</option>
+      <option value="breakfast">🍩 Breakfast</option>
+    </select>
+    <label for="cname">🎫 Coupon Ids</label>
+    <input type="text" id="coupons_ids" name="coupons_ids" placeholder="Coupons id">
+
+    <label for="cname">🎠 Carrousel Name</label>
+    <input type="text" id="cname" name="carrousel_name" placeholder="Top 10 🏆"
+
+    ,style="height:520px;">
+    <label for="database">📁 Database path</label>
+    <input type="text" id="database" name="database" value="s3a://aiml-dev-data-849495627007/rec_sys/audiencias_rec_sys/country=BR/cva.csv"
+    ,style="height:520px;">
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" placeholder="carrousel top 10">
+
+  
+    <input type="submit" value="Submit" onclick="goToHome()">
+  </form>
+</div>
+
+</body>
+</html>
+
