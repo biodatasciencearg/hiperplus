@@ -15,7 +15,7 @@
 <div>
   <label for="country">🌎 Country</label>
 
-  <select id="country" name="country">
+  <select id="country" name="country" onchange="loadData();">
     <option value="AR">Argentina</option>
     <option value="AW">Aruba</option>
     <option value="BR">Brazil</option>
@@ -84,33 +84,31 @@
 window.addEventListener('DOMContentLoaded',()=>{
   loadData();
 })
+function randomString(length=24) {
+    var result = '';
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+};
+
 function addItem(el,with_name=true) {
   console.log(el);
   const li = document.createElement('div');
   const item =  li.classList.add('item');
-  //const item2 = item.classList.add('li')
-  //const nested = item.appendChild(document.createElement(`ul`));
-  //nested.class = "list-inline m-0";
-  //nested.classList.add(`nested`);
-  //nested.insertAdjacentHTML(`afterbegin`, 
-  //`<li class="list-inline-item">
-  //<button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Add"><i class="fa fa-table"></i></button>
-  //</li>
-  //<li class="list-inline-item">
-  //<button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-  //</li>
-  //<li class="list-inline-item">
-  //<button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-  //</li>
-  //</ul>`);
   if (with_name) {
     li.id = el.carrousel_id
     li.textContent = el.carrousel_name;
   } else {
+    li.id = randomString();
     li.textContent = "New Carrousel"
-}
-  
+  }
+  // Agrego el boton que me permita o bien borrarlo o editarlo.
+  li.innerHTML += `<li> <button id='delete' onclick='editItem()'>Edit</button>
+    <button id='delete' onclick='clearItem()'>clear</button></li>`;
   dragArea.append(li);
+};
+function clearItem() {
+  event.currentTarget.parentElement.parentElement.remove();
 };
 function loadData(){
   dragArea.textContent = '';
